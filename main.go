@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"os"
+)
 
 func main() {
-	fmt.Println("log")
+	bytes, err := os.ReadFile("test.lg")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	tokens := Tokenize(string(bytes))
+
+	for _, token := range tokens {
+		token.Debug()
+	}
 }
